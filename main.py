@@ -38,13 +38,11 @@ def lire_automate(chemin_fichier):
     af["nb_etats"] = int(lignes[idx]); idx += 1
     af["etats"]    = list(range(af["nb_etats"]))
 
-    parts = lignes[idx].split(); idx += 1
-    nb_init = int(parts[0])
-    af["initiaux"] = [int(x) for x in parts[1:1 + nb_init]]
+    af["initiaux"] = [int(x) for x in lignes[idx].split()];
+    idx += 1
 
-    parts = lignes[idx].split(); idx += 1
-    nb_term = int(parts[0])
-    af["terminaux"] = [int(x) for x in parts[1:1 + nb_term]]
+    af["terminaux"] = [int(x) for x in lignes[idx].split()];
+    idx += 1
 
     af["nb_transitions"] = int(lignes[idx]); idx += 1
 
@@ -126,6 +124,10 @@ def est_deterministe(af):
 
     table = {}
     for (dep, sym, arr) in af["transitions"]:
+        # DÉTECTION DE L'EPSILON-TRANSITION
+        if sym == 'e':
+            raisons.append(f"  → Transition epsilon détectée depuis l'état {dep} (non déterministe)")
+
         table.setdefault((dep, sym), []).append(arr)
 
     for (dep, sym), arrivees in table.items():
