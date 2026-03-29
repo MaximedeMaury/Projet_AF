@@ -1,0 +1,157 @@
+  Traitement d'Automates Finis - EFREI P2 2025/2026
+
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 41
+
+  Chargement de l'automate n°41...
+============================================================
+  Automate : 41
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1, 2, 3, 4, 5 }
+  Initiaux   : { 0 }
+  Terminaux  : { 1, 2, 3, 4 }
+  Transitions: 12
+
+        État   a     b
+  ----------------------
+  E        0   1     4
+  S        1   2     3
+  S        2   2     3
+  S        3   5     5
+  S        4   5     5
+           5   5     5
+============================================================
+
+   Propriétés
+  Déterministe : OUI
+  Standard     : OUI
+  Complet      : OUI
+
+  L'automate est déjà déterministe et complet → pas de transformation.
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1, 2, 3, 4, 5 }
+  Initiaux   : { 0 }
+  Terminaux  : { 1, 2, 3, 4 }
+  Transitions: 12
+
+        État   a     b
+  ----------------------
+  E        0   1     4
+  S        1   2     3
+  S        2   2     3
+  S        3   5     5
+  S        4   5     5
+           5   5     5
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 0
+    État   1 ← 1
+    État   2 ← 2
+    État   3 ← 3
+    État   4 ← 4
+    État   5 ← 5
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)
+
+  Partition P1 :
+    Classe 0 : [1, 2, 3, 4]
+    Classe 1 : [0, 5]
+  Transitions (classes) :
+    Classe 0 :  a→C0  b→C0
+    Classe 1 :  a→C0  b→C0
+
+  Partition P2 :
+    Classe 0 : [1, 2]
+    Classe 1 : [3, 4]
+    Classe 2 : [0]
+    Classe 3 : [5]
+  Transitions (classes) :
+    Classe 0 :  a→C0  b→C1
+    Classe 1 :  a→C3  b→C3
+    Classe 2 :  a→C0  b→C1
+    Classe 3 :  a→C3  b→C3
+
+  Stabilité atteinte à P2 → partition finale.
+  → Réduit de 6 à 4 états.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1, 2, 3 }
+  Initiaux   : { 2 }
+  Terminaux  : { 0, 1 }
+  Transitions: 8
+
+        État   a     b
+  ----------------------
+  S        0   0     1
+  S        1   3     3
+  E        2   0     1
+           3   3     3
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {1, 2}
+    État 1 ← {3, 4}
+    État 2 ← {0}
+    État 3 ← {5}
+
+  Reconnaissance de mots
+  (Automate utilisé : AFDC '41_AFDC')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester :
+  Test du mot vide (ε) :
+  Chemin : 0
+  État final 0 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : aabb
+  Test du mot 'aabb' :
+  Chemin : 0 → 1 → 2 → 3 → 5
+  État final 5 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : aaaaaaaa
+  Test du mot 'aaaaaaaa' :
+  Chemin : 0 → 1 → 2 → 2 → 2 → 2 → 2 → 2 → 2
+  État final 2 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : fin
+
+  Langage complémentaire
+  Construire à partir de (1) AFDC ou (2) AFDCM ? : 1
+
+  Automate complémentaire (base : '41_AFDC') :
+============================================================
+  Automate complémentaire de 41_AFDC
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1, 2, 3, 4, 5 }
+  Initiaux   : { 0 }
+  Terminaux  : { 0, 5 }
+  Transitions: 12
+
+        État   a     b
+  ----------------------
+  E/S      0   1     4
+           1   2     3
+           2   2     3
+           3   5     5
+           4   5     5
+  S        5   5     5
+============================================================

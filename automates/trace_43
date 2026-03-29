@@ -1,0 +1,168 @@
+  Traitement d'Automates Finis - EFREI P2 2025/2026
+
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 43
+
+  Chargement de l'automate n°43...
+============================================================
+  Automate : 43
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1, 2 }
+  Initiaux   : {  }
+  Terminaux  : {  }
+  Transitions: 6
+
+        État   a     b
+  ----------------------
+           0   0    0,1
+           1   2     --
+           2   2     2
+============================================================
+
+   Propriétés
+  Déterministe : NON
+  → État 0 sur 'b' : [0, 1] (non déterministe)
+  Standard     : NON
+  → Nombre d'états initiaux != 1 : []
+  Complet      : NON
+  → État 1 : aucune transition sur 'b'
+
+  Voulez-vous standardiser l'automate ? (oui/non) : oui
+
+  Automate standardisé :
+============================================================
+  Automate standardisé
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1, 2, 3 }
+  Initiaux   : { 3 }
+  Terminaux  : {  }
+  Transitions: 6
+
+        État   a     b
+  ----------------------
+           0   0    0,1
+           1   2     --
+           2   2     2
+  E        3   --    --
+============================================================
+
+   Propriétés
+  Déterministe : NON
+  → État 0 sur 'b' : [0, 1] (non déterministe)
+  Standard     : OUI
+  Complet      : NON
+  → État 1 : aucune transition sur 'b'
+  → État 3 : aucune transition sur 'a'
+  → État 3 : aucune transition sur 'b'
+
+  L'automate n'est pas déterministe → déterminisation + complétion.
+   Déterminisation (algorithme des sous-ensembles)
+
+  Correspondance états :
+    3          ← {3}
+    P          ← {∅ (puits)}
+
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1 }
+  Initiaux   : { 0 }
+  Terminaux  : {  }
+  Transitions: 4
+
+        État   a     b
+  ----------------------
+  E        0   1     1
+           1   1     1
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 3
+    État   1 ← P
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)
+  Aucun état terminal : langage vide, minimisation triviale.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1 }
+  Initiaux   : { 0 }
+  Terminaux  : {  }
+  Transitions: 4
+
+        État   a     b
+  ----------------------
+  E        0   1     1
+           1   1     1
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {0}
+    État 1 ← {1}
+
+  Reconnaissance de mots
+  (Automate utilisé : AFDC '43_std_det')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester : ba
+  Test du mot 'ba' :
+  Chemin : 0 → 1 → 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : a
+  Test du mot 'a' :
+  Chemin : 0 → 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : b
+  Test du mot 'b' :
+  Chemin : 0 → 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : aa
+  Test du mot 'aa' :
+  Chemin : 0 → 1 → 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : ba
+  Test du mot 'ba' :
+  Chemin : 0 → 1 → 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : fin
+
+  Langage complémentaire
+  Construire à partir de (1) AFDC ou (2) AFDCM ? : 1
+
+  Automate complémentaire (base : '43_std_det') :
+============================================================
+  Automate complémentaire de 43_std_det
+============================================================
+  Alphabet   : { a, b }
+  États      : { 0, 1 }
+  Initiaux   : { 0 }
+  Terminaux  : { 0, 1 }
+  Transitions: 4
+
+        État   a     b
+  ----------------------
+  E/S      0   1     1
+  S        1   1     1
+============================================================

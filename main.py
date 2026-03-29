@@ -37,10 +37,14 @@ def lire_automate(chemin_fichier):
     af["nb_etats"] = int(lignes[idx]); idx += 1
     af["etats"]    = list(range(af["nb_etats"]))
 
-    af["initiaux"] = [int(x) for x in lignes[idx].split()];
+    # CORRECTION ICI : On ignore le premier chiffre (qui est la quantité)
+    valeurs_init = [int(x) for x in lignes[idx].split()]
+    af["initiaux"] = valeurs_init[1:] if len(valeurs_init) > 0 else []
     idx += 1
 
-    af["terminaux"] = [int(x) for x in lignes[idx].split()];
+    # CORRECTION ICI : On ignore le premier chiffre (qui est la quantité)
+    valeurs_term = [int(x) for x in lignes[idx].split()]
+    af["terminaux"] = valeurs_term[1:] if len(valeurs_term) > 0 else []
     idx += 1
 
     af["nb_transitions"] = int(lignes[idx]); idx += 1
@@ -111,8 +115,6 @@ def afficher_automate(af, titre=None):
 
     print(sep)
     print()
-
-
 
 #  TESTS : DÉTERMINISTE, STANDARD, COMPLET
 
@@ -189,10 +191,7 @@ def afficher_proprietes(af):
     print()
     return det, std, comp
 
-
-
 #  STANDARDISATION
-
 
 def standardiser(af):
     sfa = copier_automate(af)
@@ -335,7 +334,6 @@ def determiniser_et_completer(af):
     return afdc, corresp_finale
 
 
-
 #  MINIMISATION
 
 def trouver_classe(e, partition):
@@ -422,10 +420,7 @@ def minimiser(afdc):
 
     return afdcm, correspondance
 
-
-
 #  RECONNAISSANCE DE MOTS
-
 
 def reconnaitre_mot(mot, afdc):
     for c in mot:
@@ -457,7 +452,6 @@ def reconnaitre_mot(mot, afdc):
 
 #  LANGAGE COMPLÉMENTAIRE
 
-
 def complementaire(afdc):
     acomp = copier_automate(afdc)
     acomp["terminaux"] = [e for e in afdc["etats"] if e not in afdc["terminaux"]]
@@ -465,7 +459,6 @@ def complementaire(afdc):
     return acomp
 
 #  BOUCLE PRINCIPALE
-
 
 def choisir_automate():
     print("\n" + "-" * 60)
