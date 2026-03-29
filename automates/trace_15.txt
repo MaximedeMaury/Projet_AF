@@ -1,0 +1,237 @@
+  Traitement d'Automates Finis - EFREI P2 2025/2026   
+
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 15
+
+  Chargement de l'automate n°15...
+============================================================
+  Automate : 15
+============================================================
+  Alphabet   : { a, b, c, d }
+  États      : { 0, 1, 2, 3, 4 }
+  Initiaux   : { 1 }
+  Terminaux  : { 4 }
+  Transitions: 17
+
+        État   a     b     c     d  
+  ----------------------------------
+           0   0     --    --    -- 
+  E        1   1     2     3     4  
+           2   0     2     3     4  
+           3   0     0     3     4  
+  S        4   0     0     0     4  
+============================================================
+
+   Propriétés 
+  Déterministe : OUI
+  Standard     : NON
+  → Transition 1 --a--> 1 (arrive sur l'état initial)
+  Complet      : NON
+  → État 0 : aucune transition sur 'b'
+  → État 0 : aucune transition sur 'c'
+  → État 0 : aucune transition sur 'd'
+
+  Voulez-vous standardiser l'automate ? (oui/non) : oui
+
+  Automate standardisé :
+============================================================
+  Automate standardisé
+============================================================
+  Alphabet   : { a, b, c, d }
+  États      : { 0, 1, 2, 3, 4, 5 }
+  Initiaux   : { 5 }
+  Terminaux  : { 4 }
+  Transitions: 21
+
+        État   a     b     c     d  
+  ----------------------------------
+           0   0     --    --    -- 
+           1   1     2     3     4  
+           2   0     2     3     4  
+           3   0     0     3     4  
+  S        4   0     0     0     4  
+  E        5   1     2     3     4  
+============================================================
+
+   Propriétés 
+  Déterministe : OUI
+  Standard     : OUI
+  Complet      : NON
+  → État 0 : aucune transition sur 'b'
+  → État 0 : aucune transition sur 'c'
+  → État 0 : aucune transition sur 'd'
+
+  L'automate est déterministe mais pas complet → complétion.
+  → État puits créé : 6
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a, b, c, d }
+  États      : { 0, 1, 2, 3, 4, 5, 6 }
+  Initiaux   : { 5 }
+  Terminaux  : { 4 }
+  Transitions: 28
+
+        État   a     b     c     d  
+  ----------------------------------
+           0   0     6     6     6  
+           1   1     2     3     4  
+           2   0     2     3     4  
+           3   0     0     3     4  
+  S        4   0     0     0     4  
+  E        5   1     2     3     4  
+           6   6     6     6     6  
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 0
+    État   1 ← 1
+    État   2 ← 2
+    État   3 ← 3
+    État   4 ← 4
+    État   5 ← 5
+    État   6 ← 6
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)   
+
+  Partition P1 :
+    Classe 0 : [4]
+    Classe 1 : [0, 1, 2, 3, 5, 6]
+  Transitions (classes) :
+    Classe 0 :  a→C1  b→C1  c→C1  d→C0
+    Classe 1 :  a→C1  b→C1  c→C1  d→C1
+
+  Partition P2 :
+    Classe 0 : [4]
+    Classe 1 : [0, 6]
+    Classe 2 : [1, 2, 3, 5]
+  Transitions (classes) :
+    Classe 0 :  a→C1  b→C1  c→C1  d→C0
+    Classe 1 :  a→C1  b→C1  c→C1  d→C1
+    Classe 2 :  a→C2  b→C2  c→C2  d→C0
+
+  Partition P3 :
+    Classe 0 : [4]
+    Classe 1 : [0, 6]
+    Classe 2 : [1, 5]
+    Classe 3 : [2]
+    Classe 4 : [3]
+  Transitions (classes) :
+    Classe 0 :  a→C1  b→C1  c→C1  d→C0
+    Classe 1 :  a→C1  b→C1  c→C1  d→C1
+    Classe 2 :  a→C2  b→C3  c→C4  d→C0
+    Classe 3 :  a→C1  b→C3  c→C4  d→C0
+    Classe 4 :  a→C1  b→C1  c→C4  d→C0
+
+  Stabilité atteinte à P3 → partition finale.
+  → Réduit de 7 à 5 états.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a, b, c, d }
+  États      : { 0, 1, 2, 3, 4 }
+  Initiaux   : { 2 }
+  Terminaux  : { 0 }
+  Transitions: 20
+
+        État   a     b     c     d  
+  ----------------------------------
+  S        0   1     1     1     0  
+           1   1     1     1     1  
+  E        2   2     3     4     0  
+           3   1     3     4     0  
+           4   1     1     4     0  
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {4}
+    État 1 ← {0, 6}
+    État 2 ← {1, 5}
+    État 3 ← {2}
+    État 4 ← {3}
+
+  Reconnaissance de mots 
+  (Automate utilisé : AFDC '15_std_complet')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester : aaaaaaaaaaaa
+  Test du mot 'aaaaaaaaaaaa' :
+  Chemin : 5 → 1 → 1 → 1 → 1 → 1 → 1 → 1 → 1 → 1 → 1 → 1 → 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : 
+  Test du mot vide (ε) :
+  Chemin : 5
+  État final 5 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : abcd
+  Test du mot 'abcd' :
+  Chemin : 5 → 1 → 2 → 3 → 4
+  État final 4 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : abcaaaad
+  Test du mot 'abcaaaad' :
+  Chemin : 5 → 1 → 2 → 3 → 0 → 0 → 0 → 0 → 6
+  État final 6 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : d
+  Test du mot 'd' :
+  Chemin : 5 → 4
+  État final 4 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : ad
+  Test du mot 'ad' :
+  Chemin : 5 → 1 → 4
+  État final 4 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : acd
+  Test du mot 'acd' :
+  Chemin : 5 → 1 → 3 → 4
+  État final 4 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : acda
+  Test du mot 'acda' :
+  Chemin : 5 → 1 → 3 → 4 → 0
+  État final 0 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : fin
+
+  Langage complémentaire 
+  Construire à partir de (1) AFDC ou (2) AFDCM ? : 1
+
+  Automate complémentaire (base : '15_std_complet') :
+============================================================
+  Automate complémentaire de 15_std_complet
+============================================================
+  Alphabet   : { a, b, c, d }
+  États      : { 0, 1, 2, 3, 4, 5, 6 }
+  Initiaux   : { 5 }
+  Terminaux  : { 0, 1, 2, 3, 5, 6 }
+  Transitions: 28
+
+        État   a     b     c     d  
+  ----------------------------------
+  S        0   0     6     6     6  
+  S        1   1     2     3     4  
+  S        2   0     2     3     4  
+  S        3   0     0     3     4  
+           4   0     0     0     4  
+  E/S      5   1     2     3     4  
+  S        6   6     6     6     6  
+============================================================

@@ -1,0 +1,193 @@
+Traitement d'Automates Finis - EFREI P2 2025/2026
+
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 28
+
+  Chargement de l'automate n°28...
+============================================================
+  Automate : 28
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5 }
+  Initiaux   : { 1, 1 }
+  Terminaux  : { 2, 0, 3 }
+  Transitions: 7
+
+        État   a
+  ----------------
+  S        0   4
+  E        1  2,4
+  S        2   3
+  S        3   2
+           4   5
+           5   0
+============================================================
+
+   Propriétés
+  Déterministe : NON
+  → Plusieurs états initiaux : [1, 1]
+  → État 1 sur 'a' : [2, 4] (non déterministe)
+  Standard     : NON
+  → Nombre d'états initiaux != 1 : [1, 1]
+  Complet      : OUI
+
+  Voulez-vous standardiser l'automate ? (oui/non) : oui
+
+  Automate standardisé :
+============================================================
+  Automate standardisé
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5, 6 }
+  Initiaux   : { 6 }
+  Terminaux  : { 2, 0, 3 }
+  Transitions: 11
+
+        État     a
+  --------------------
+  S        0     4
+           1    2,4
+  S        2     3
+  S        3     2
+           4     5
+           5     0
+  E        6  2,2,4,4
+============================================================
+
+   Propriétés
+  Déterministe : NON
+  → État 1 sur 'a' : [2, 4] (non déterministe)
+  → État 6 sur 'a' : [2, 4, 2, 4] (non déterministe)
+  Standard     : OUI
+  Complet      : OUI
+
+  L'automate n'est pas déterministe → déterminisation + complétion.
+   Déterminisation (algorithme des sous-ensembles)
+
+  Correspondance états :
+    6          ← {6}
+    02         ← {0, 2}
+    03         ← {0, 3}
+    24         ← {2, 4}
+    25         ← {2, 5}
+    34         ← {3, 4}
+    35         ← {3, 5}
+
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5, 6 }
+  Initiaux   : { 5 }
+  Terminaux  : { 0, 1, 2, 3, 4, 6 }
+  Transitions: 7
+
+        État   a
+  ----------------
+  S        0   3
+  S        1   4
+  S        2   0
+  S        3   1
+  S        4   6
+  E        5   4
+  S        6   2
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 34
+    État   1 ← 03
+    État   2 ← 02
+    État   3 ← 25
+    État   4 ← 24
+    État   5 ← 6
+    État   6 ← 35
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)
+
+  Partition P1 :
+    Classe 0 : [0, 1, 2, 3, 4, 6]
+    Classe 1 : [5]
+  Transitions (classes) :
+    Classe 0 :  a→C0
+    Classe 1 :  a→C0
+
+  Stabilité atteinte à P1 → partition finale.
+  → Réduit de 7 à 2 états.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0 }
+  Transitions: 2
+
+        État   a
+  ----------------
+  S        0   0
+  E        1   0
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {0, 1, 2, 3, 4, 6}
+    État 1 ← {5}
+
+  Reconnaissance de mots
+  (Automate utilisé : AFDC '28_std_det')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester : aa
+  Test du mot 'aa' :
+  Chemin : 5 → 4 → 6
+  État final 6 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : a
+  Test du mot 'a' :
+  Chemin : 5 → 4
+  État final 4 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : aaaaaa
+  Test du mot 'aaaaaa' :
+  Chemin : 5 → 4 → 6 → 2 → 0 → 3 → 1
+  État final 1 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : abb
+  Test du mot 'abb' :
+  Caractère 'b' hors alphabet ['a'] → NON reconnu
+
+  Mot à tester : fin
+
+  Langage complémentaire
+  Construire à partir de (1) AFDC ou (2) AFDCM ? : 1
+
+  Automate complémentaire (base : '28_std_det') :
+============================================================
+  Automate complémentaire de 28_std_det
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5, 6 }
+  Initiaux   : { 5 }
+  Terminaux  : { 5 }
+  Transitions: 7
+
+        État   a
+  ----------------
+           0   3
+           1   4
+           2   0
+           3   1
+           4   6
+  E/S      5   4
+           6   2
+============================================================

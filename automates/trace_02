@@ -1,0 +1,143 @@
+Traitement d'Automates Finis - EFREI P2 2025/2026
+
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 2
+
+  Chargement de l'automate n°2...
+============================================================
+  Automate : 02
+============================================================
+  Alphabet   : { a }
+  États      : { 0 }
+  Initiaux   : { 1, 0 }
+  Terminaux  : { 1, 0 }
+  Transitions: 1
+
+        État   a
+  ----------------
+  E/S      0   0
+============================================================
+
+   Propriétés
+  Déterministe : NON
+  → Plusieurs états initiaux : [1, 0]
+  Standard     : NON
+  → Nombre d'états initiaux != 1 : [1, 0]
+  Complet      : OUI
+
+  Voulez-vous standardiser l'automate ? (oui/non) : oui
+
+  Automate standardisé :
+============================================================
+  Automate standardisé
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1 }
+  Initiaux   : { 1 }
+  Terminaux  : { 1, 0 }
+  Transitions: 2
+
+        État   a
+  ----------------
+  S        0   0
+  E/S      1   0
+============================================================
+
+   Propriétés
+  Déterministe : OUI
+  Standard     : OUI
+  Complet      : OUI
+
+  L'automate est déjà déterministe et complet → pas de transformation.
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1 }
+  Initiaux   : { 1 }
+  Terminaux  : { 1, 0 }
+  Transitions: 2
+
+        État   a
+  ----------------
+  S        0   0
+  E/S      1   0
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 0
+    État   1 ← 1
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)
+
+  Partition P1 :
+    Classe 0 : [0, 1]
+  Transitions (classes) :
+    Classe 0 :  a→C0
+
+  Stabilité atteinte à P1 → partition finale.
+  → Réduit de 2 à 1 états.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a }
+  États      : { 0 }
+  Initiaux   : { 0 }
+  Terminaux  : { 0 }
+  Transitions: 1
+
+        État   a
+  ----------------
+  E/S      0   0
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {0, 1}
+
+  Reconnaissance de mots
+  (Automate utilisé : AFDC '02_std_AFDC')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester : a
+  Test du mot 'a' :
+  Chemin : 1 → 0
+  État final 0 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : b
+  Test du mot 'b' :
+  Caractère 'b' hors alphabet ['a'] → NON reconnu
+
+  Mot à tester :
+  Test du mot vide (ε) :
+  Chemin : 1
+  État final 1 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : fin
+
+  Langage complémentaire
+  Construire à partir de (1) AFDC ou (2) AFDCM ? : 2
+
+  Automate complémentaire (base : '02_std_AFDC_min') :
+============================================================
+  Automate complémentaire de 02_std_AFDC_min
+============================================================
+  Alphabet   : { a }
+  États      : { 0 }
+  Initiaux   : { 0 }
+  Terminaux  : {  }
+  Transitions: 1
+
+        État   a
+  ----------------
+  E        0   0
+============================================================

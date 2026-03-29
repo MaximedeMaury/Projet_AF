@@ -1,0 +1,109 @@
+Traitement d'Automates Finis - EFREI P2 2025/2026
+
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 8
+
+  Chargement de l'automate n°8...
+============================================================
+  Automate : 08
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0 }
+  Transitions: 2
+
+        État   a
+  ----------------
+  S        0   0
+  E        1   0
+============================================================
+
+   Propriétés
+  Déterministe : OUI
+  Standard     : OUI
+  Complet      : OUI
+
+  L'automate est déjà déterministe et complet → pas de transformation.
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0 }
+  Transitions: 2
+
+        État   a
+  ----------------
+  S        0   0
+  E        1   0
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 0
+    État   1 ← 1
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)
+
+  Partition P1 :
+    Classe 0 : [0]
+    Classe 1 : [1]
+  Transitions (classes) :
+    Classe 0 :  a→C0
+    Classe 1 :  a→C0
+
+  Stabilité atteinte à P1 → partition finale.
+  → L'automate était déjà minimal.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0 }
+  Transitions: 2
+
+        État   a
+  ----------------
+  S        0   0
+  E        1   0
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {0}
+    État 1 ← {1}
+
+  Reconnaissance de mots
+  (Automate utilisé : AFDC '08_AFDC')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester : a
+  Test du mot 'a' :
+  Chemin : 1 → 0
+  État final 0 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : aaa
+  Test du mot 'aaa' :
+  Chemin : 1 → 0 → 0 → 0
+  État final 0 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : b
+  Test du mot 'b' :
+  Caractère 'b' hors alphabet ['a'] → NON reconnu
+
+  Mot à tester :
+  Test du mot vide (ε) :
+  Chemin : 1
+  État final 1 ∉ terminaux
+  Résultat : NON reconnu

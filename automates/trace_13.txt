@@ -1,0 +1,173 @@
+------------------------------------------------------------
+CHOIX DE L'AUTOMATE
+------------------------------------------------------------
+  Entrez le numéro de l'automate (ou 'quitter') : 13
+
+  Chargement de l'automate n°13...
+============================================================
+  Automate : 13
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5, 6, 7 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0, 3, 4, 5, 6, 7 }
+  Transitions: 8
+
+        État   a  
+  ----------------
+  S        0   0  
+  E        1   2  
+           2   3  
+  S        3   4  
+  S        4   5  
+  S        5   6  
+  S        6   7  
+  S        7   0  
+============================================================
+
+   Propriétés 
+  Déterministe : OUI
+  Standard     : OUI
+  Complet      : OUI
+
+  L'automate est déjà déterministe et complet → pas de transformation.
+
+  Automate déterministe et complet (AFDC) :
+============================================================
+  AFDC
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5, 6, 7 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0, 3, 4, 5, 6, 7 }
+  Transitions: 8
+
+        État   a  
+  ----------------
+  S        0   0  
+  E        1   2  
+           2   3  
+  S        3   4  
+  S        4   5  
+  S        5   6  
+  S        6   7  
+  S        7   0  
+============================================================
+
+  Correspondance états AFDC → états originaux :
+    État   0 ← 0
+    État   1 ← 1
+    État   2 ← 2
+    État   3 ← 3
+    État   4 ← 4
+    État   5 ← 5
+    État   6 ← 6
+    État   7 ← 7
+
+  Lancement de la minimisation...
+   Minimisation (algorithme des partitions)   
+
+  Partition P1 :
+    Classe 0 : [0, 3, 4, 5, 6, 7]
+    Classe 1 : [1, 2]
+  Transitions (classes) :
+    Classe 0 :  a→C0
+    Classe 1 :  a→C1
+
+  Partition P2 :
+    Classe 0 : [0, 3, 4, 5, 6, 7]
+    Classe 1 : [1]
+    Classe 2 : [2]
+  Transitions (classes) :
+    Classe 0 :  a→C0
+    Classe 1 :  a→C2
+    Classe 2 :  a→C0
+
+  Stabilité atteinte à P2 → partition finale.
+  → Réduit de 8 à 3 états.
+
+  Automate minimal (AFDCM) :
+============================================================
+  AFDCM
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2 }
+  Initiaux   : { 1 }
+  Terminaux  : { 0 }
+  Transitions: 3
+
+        État   a  
+  ----------------
+  S        0   0  
+  E        1   2  
+           2   0  
+============================================================
+
+  Correspondance états AFDCM → états AFDC :
+    État 0 ← {0, 3, 4, 5, 6, 7}
+    État 1 ← {1}
+    État 2 ← {2}
+
+  Reconnaissance de mots 
+  (Automate utilisé : AFDC '13_AFDC')
+  Tapez 'fin' pour arrêter la saisie des mots.
+  Tapez 'epsilon' ou laissez vide pour tester le mot vide.
+
+  Mot à tester : `
+  Test du mot '`' :
+  Caractère '`' hors alphabet ['a'] → NON reconnu
+
+  Mot à tester : a
+  Test du mot 'a' :
+  Chemin : 1 → 2
+  État final 2 ∉ terminaux
+  Résultat : NON reconnu
+
+  Mot à tester : aa
+  Test du mot 'aa' :
+  Chemin : 1 → 2 → 3
+  État final 3 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : aaa
+  Test du mot 'aaa' :
+  Chemin : 1 → 2 → 3 → 4
+  État final 4 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  Test du mot 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' :
+  Chemin : 1 → 2 → 3 → 4 → 5 → 6 → 7 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0 → 0
+  État final 0 ∈ terminaux
+  Résultat : OUI reconnu
+
+  Mot à tester : b
+  Test du mot 'b' :
+  Caractère 'b' hors alphabet ['a'] → NON reconnu
+
+  Mot à tester : fin
+
+  Langage complémentaire 
+  Construire à partir de (1) AFDC ou (2) AFDCM ? : 1
+
+  Automate complémentaire (base : '13_AFDC') :
+============================================================
+  Automate complémentaire de 13_AFDC
+============================================================
+  Alphabet   : { a }
+  États      : { 0, 1, 2, 3, 4, 5, 6, 7 }
+  Initiaux   : { 1 }
+  Terminaux  : { 1, 2 }
+  Transitions: 8
+
+        État   a  
+  ----------------
+           0   0  
+  E/S      1   2  
+  S        2   3  
+           3   4  
+           4   5  
+           5   6  
+           6   7  
+           7   0  
+============================================================
