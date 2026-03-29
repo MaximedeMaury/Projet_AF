@@ -19,7 +19,6 @@ def copier_automate(af):
 
 #  LECTURE D'UN AUTOMATE DEPUIS UN FICHIER
 
-
 def lire_automate(chemin_fichier):
     if not os.path.exists(chemin_fichier):
         print(f"  ERREUR : fichier '{chemin_fichier}' introuvable.")
